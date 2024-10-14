@@ -12,7 +12,7 @@ def create_word_set(file_name, content): # Read list & Create List for game """
 def hangman_main_game(word_list):
     
 
-main()
+main()  
 
 
         
