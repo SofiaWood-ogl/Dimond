@@ -1,6 +1,6 @@
 import time
 
-class stopwatch 
+class stopwatch: 
   def __init__(self):
     self.start_time= 0
     self.elapsed_time =0
@@ -11,7 +11,7 @@ class stopwatch
       self.start_time=time.time()
       self.running=True
 
-  def stop(slef):
+  def stop(self):
     if self.running:
       self.elapsed_time += time.time() - self.start_time
       self.running=False
@@ -21,13 +21,13 @@ class stopwatch
     self.elapsed_time=0
     self.running=False
 
-  def get_time(self)
+  def get_time(self):
     if self.running: 
       return self.elapsed_time+ time.time() -self.start_time
     else:
       return self.elapsed_time
 
-  def display_time(self)
+  def display_time(self):
     elapsed= self.get_time()
     minutes, seconds = divmod(elapsed, 60) 
     hours, minutes = divmod(minutes, 60)
