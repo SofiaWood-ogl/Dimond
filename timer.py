@@ -41,4 +41,4 @@ if __name__ =="__main__" :
     time.sleep(2)
     stopwatch.stop()
 
-    print(f"Elapsed time: {stopwatch.display_time()}")
+    print(f"It took", {stopwatch.display_time()},"this long to complete this round of hangman.")
