@@ -16,6 +16,8 @@ class stopwatch:
   def stop(self):
     if guess_left==0:
       self.running=False
+    elif word_progress == word_to_guess_list:
+      self.runnign=False
 #This is to stop the timer. 
 
   def reset(self):
@@ -48,4 +50,4 @@ if __name__ =="__main__" :
 
     print(f"It took", {stopwatch.display_time()},"this long to complete this round of hangman.")
 
-#Parts will be changed once all coding for other parts are finished.
+#Parts may be changed once all coding for other parts are finished.
