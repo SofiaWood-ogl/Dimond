@@ -11,13 +11,12 @@ class stopwatch:
     if not self.running:
       self.start_time=time.time()
       self.running=True
-#this is to start the timer. This will get changed once the hangman program is complete. Reason: the variables are needed in order to start at the begining.
+#this is to start the timer.
 
   def stop(self):
-    if self.running:
-      self.elapsed_time += time.time() - self.start_time
+    if guess_left==0:
       self.running=False
-#This is to stop the timer. This will also get changed once the hangman program is complete. Reason: the variables are needed on order to end once the round of hangman game is complete.
+#This is to stop the timer. 
 
   def reset(self):
     self.start_time= 0
