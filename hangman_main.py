@@ -52,6 +52,7 @@ while n != 0:
     
     user_response = input() # Determines if User is guessing word or letter.
     user_response = user_response.upper() # Doesn't matter if lowercase or not.
+    print()
 
     if user_response == "QUIT": # User quits game
         print("Quitting Game!")
