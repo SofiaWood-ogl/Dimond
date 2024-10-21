@@ -14,7 +14,8 @@ word_list = create_word_set('word_list.txt')
 word_to_guess = choose_random_word(word_list)
 user_guess = ""
 guesses_left = 7 # Essentially "lives" you have when you fail a guess.
-list_of_words_used = []
+list_of_letters_used = []
+is_game_over = False # Used to ask User if they want to play again.
 
 # Create list where blank spaces filled up by guesses
 word_progress = [] 
@@ -38,8 +39,8 @@ while n != 0:
     timer.start() # Game timer runs
     
     print(word_progress)
-    if len(list_of_words_used) > 0:
-        print(f"Letters used: {list_of_words_used}")
+    if len(list_of_letters_used) > 0:
+        print(f"Letters used: {list_of_letters_used}")
     #print("The word is " + word_to_guess) #Debugging to see if word is accurate
     print()
     
@@ -60,10 +61,10 @@ while n != 0:
         guess_state = user_guess_word(user_response, word_to_guess) # Boolean Value for Guess.
         if guess_state == True:
             print("You got the word right! You win!")
-            timer.stop
+            timer.stop()
             print(f"The game lasted for: {timer.display_time()}")
             print()
-            n = 0
+            is_game_over = True
         else:
             print("Wrong answer!")
             print()
@@ -71,7 +72,7 @@ while n != 0:
     
     elif len(user_response) <= 1: # User is guessing a letter
         guess_state = user_guess_letter(user_response, word_to_guess)
-        list_of_words_used.append(user_response.upper())
+        list_of_letters_used.append(user_response.upper())
         if guess_state == True: # Guess is right, will replace blank space with word.
             print("You guessed the right letter!")
             print()
@@ -85,20 +86,50 @@ while n != 0:
             
     # User loses if they have no more lives left.
     if guesses_left == 0:
-        n = 0
         print("The man has been hung! You lose! :(")
         print(f"The word was {word_to_guess}.")
         print("You ran out of lives!")
-        timer.stop
+        timer.stop()
         print(f"The game lasted for: {timer.display_time()}")
+        is_game_over = True
     
     # User wins if they guess all the letters correctly.
     elif word_progress == word_to_guess_list:
-        n = 0
         print(f"The word was {word_to_guess} You win! :)")
         print(f"You had {guesses_left} lives left!")
-        timer.stop
+        timer.stop()
         print(f"The game lasted for: {timer.display_time()}")
+        is_game_over = True
+    
+    if is_game_over and n != 0: # Detects whether or not the game ended and asks User if they'd like to replay.
+        print("*" * 29)
+        print("Would you like to play again?")
+        print("Type Yes to replay!")
+        user_response = input()
+        print("*" * 29)
+        print()
+
+        if user_response.upper() in ["YES", "Y"]: # Game replays
+            is_game_over = False 
+            timer.reset()
+            word_to_guess = choose_random_word(word_list) # Choose new word
+            word_to_guess_list = list(word_to_guess)
+            list_of_letters_used = []
+            word_progress = [] 
+            guesses_left = 7
+            word_progress = [] 
+            for i in range(len(word_to_guess)):
+                word_progress.append("_")
+             
+        else:
+            n = 0 # Game Ends
+
+             
+
+            
+        
+    
+    
         
     
     
