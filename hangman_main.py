@@ -1,5 +1,6 @@
 from hangman_functions import *
 from typing import List
+from timer import *
 
 print("Hello! Welcome to Hangman! Guess the letters to reveal the hidden word!")
 print("You can guess the word in full, however, the correct letters will not show!")
@@ -19,6 +20,10 @@ list_of_words_used = []
 word_progress = [] 
 for i in range(len(word_to_guess)):
     word_progress.append("_")
+    
+
+# Stop watch object to time game.
+timer = stopwatch()
 
 # Create list to compare index of word to guess.
 word_to_guess_list = list(word_to_guess)
@@ -30,6 +35,7 @@ n = 1 # Variable used to break out of loop when game ends
 
 while n != 0:
     
+    timer.start() # Game timer runs
     
     print(word_progress)
     if len(list_of_words_used) > 0:
@@ -54,6 +60,8 @@ while n != 0:
         guess_state = user_guess_word(user_response, word_to_guess) # Boolean Value for Guess.
         if guess_state == True:
             print("You got the word right! You win!")
+            timer.stop
+            print(f"The game lasted for: {timer.display_time()}")
             print()
             n = 0
         else:
@@ -81,12 +89,16 @@ while n != 0:
         print("The man has been hung! You lose! :(")
         print(f"The word was {word_to_guess}.")
         print("You ran out of lives!")
+        timer.stop
+        print(f"The game lasted for: {timer.display_time()}")
     
     # User wins if they guess all the letters correctly.
     elif word_progress == word_to_guess_list:
         n = 0
         print(f"The word was {word_to_guess} You win! :)")
         print(f"You had {guesses_left} lives left!")
+        timer.stop
+        print(f"The game lasted for: {timer.display_time()}")
         
     
     
