@@ -1,15 +1,74 @@
 from hangman_functions import *
 from typing import List
 from timer import *
+from hangman_game_class import *
 
-print("Hello! Welcome to Hangman! Guess the letters to reveal the hidden word!")
-print("You can guess the word in full, however, the correct letters will not show!")
-print()
-print("Let's get started shall we?")
-print("P.S. You can quit the game by typing quit")
-print("*" * 41)
-print(" ")
+game = hangman_game('word_list.txt', 7) # Takes word.txt files and number of guesses as parameters
+game.display_intro()
+game.start_game()
 
+
+n = 1 # Variable used to break out of loop when game ends.
+
+while n != 0:
+        
+        while not game.check_game_completion(): # Game runs as long as it is it isn't finished.
+            
+            game.display_game_progress() 
+    
+            user_response = input() # User guesses either letter or word.
+            user_response = user_response.upper()
+    
+            # USER INPUTS
+            if user_response == 'QUIT': # User manually ends game by quitting
+                print("Quitting Game!")
+                n = 0
+
+            elif len(user_response) > 1: # User is guessing a word.
+                if game.guess_word(user_response): # True or False on whether word was right
+                    game.stop_timer()
+                    game.display_win_message()
+                    game.set_game_completion()
+
+                else: #Word wrong and removes guess.
+                    game.subtract_guess()
+                    
+            elif len(user_response) == 1: # User is guessing a letter.
+                game.guess_letter(user_response) #Checks whether letter is right or not.
+                    
+        
+        # GAME PROGRESS (Lives & Word Progress)
+            if game.get_guesses() == 0:
+                game.stop_timer()
+                game.display_lose_message()
+                game.set_game_completion()
+            
+            elif game.guess_letter_check():
+                game.stop_timer
+                game.display_win_message()
+                game.set_game_completion()
+            
+        # ASK USER TO REPLAY
+            if game.check_game_completion(): # Ask user to play again
+               game.display_ask_replay_game()
+               user_response = input()
+               user_response = user_response.upper()
+               if user_response != "NO": # User replays game and new object made.
+                   game = hangman_game('word_list.txt', 7)
+               else:
+                   print("Quitting Game!")
+            
+    
+        
+            
+
+
+
+            
+
+# OLD CODE
+
+"""
 word_list = create_word_set('word_list.txt')
 word_to_guess = choose_random_word(word_list)
 user_guess = ""
@@ -51,7 +110,7 @@ while n != 0:
     print()
     
     user_response = input() # Determines if User is guessing word or letter.
-    user_response = user_response.upper() # Doesn't matter if lowercase or not.
+    user_response = user_response.upper() # Doesn't matter if lower-case or not.
     print()
 
     if user_response == "QUIT": # User quits game
@@ -128,7 +187,7 @@ while n != 0:
              
 
             
-        
+"""       
     
     
         
