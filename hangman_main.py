@@ -55,6 +55,7 @@ while n != 0:
                user_response = user_response.upper()
                if user_response != "NO": # User replays game and new object made.
                    game = hangman_game('word_list.txt', 7)
+                   game.start_game()
                else:
                    print("Quitting Game!")
             
