@@ -7,7 +7,7 @@ def multiplayer_game(file_name, num_players):
     letters_guessed = []
     players_scores = {f"Player {i+1}": 0 for i in range(num_players)}
     current_player_index = 0
-    max_turns = 6 
+    max_turns = 7 
     turns_left = max_turns * num_players
     
     print("Game Started!")
