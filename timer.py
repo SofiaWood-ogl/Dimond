@@ -31,6 +31,7 @@ class stopwatch:
       return self.elapsed_time+ time.time() -self.start_time
     else:
       return self.elapsed_time
+    self.times.append(int(self.elapsed_time))
 #This will allows us to save the time and later show the amount of time it took.   
 
   def display_time(self):
@@ -38,16 +39,26 @@ class stopwatch:
     minutes, seconds = divmod(elapsed, 60) 
     hours, minutes = divmod(minutes, 60)
     return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02}"
-#This will show the user the amount of time it took to complete.     
+#This will show the user the amount of time it took to complete.    
+
+ def fastest_time(self):
+        if self.times: 
+            fastest = min(self.times)  
+            return f"Fastest time: {fastest} seconds"
+        else:
+            return "No times recorded yet."
+#Shows the current fastest times.
 
 if __name__ =="__main__" :
   stopwatch=Stopwatch()
 
 
-   stopwatch.start()
-    time.sleep(2)
-    stopwatch.stop()
-
+  for i in range(3):
+        stopwatch.start()
+        time.sleep(2 + i)  
+        stopwatch.stop()
+      
     print(f"It took", {stopwatch.display_time()},"this long to complete this round of hangman.")
+    print(f"\n"Current fastest time:",{stopwatch.fastest_time()}")  
 
 #Parts may be changed once all coding for other parts are finished.
