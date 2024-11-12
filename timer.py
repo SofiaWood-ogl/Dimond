@@ -41,12 +41,12 @@ class stopwatch:
     return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02}"
 #This will show the user the amount of time it took to complete.    
 
- def fastest_time(self):
-        if self.times: 
-            fastest = min(self.times)  
-            return f"Fastest time: {fastest} seconds"
-        else:
-            return "No times recorded yet."
+# def fastest_time(self):
+ #       if self.times: 
+  #          fastest = min(self.times)  
+   #         return f"Fastest time: {fastest} seconds"
+    #    else:
+     #       return "No times recorded yet."
 #Shows the current fastest times.
 
 if __name__ =="__main__" :
