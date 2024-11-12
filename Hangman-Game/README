@@ -1,0 +1,22 @@
+INSTRUCTIONS:
+
+Once you've downloaded the Hangman Game file, in order to run the program you must have Python installed on your system.
+
+Right click the main.py file and select "Open With"
+
+Click on Python and the game should run.
+
+HOW TO PLAY:
+
+Once you've ran the program the instructions are shown within the program.
+
+To guess a letter, type in only one letter. (C) (A) (T)
+
+To guess a word in full, type in more than 1 letter. (CAT)
+
+Wrong guesses result in a life being subtracted. When you run out of lives you lose!
+
+Correct guesses will result in the letters filling in the correct spots on the blank.
+If all the blanks are filled, the word is shown and you win!
+
+If you correctly guess a word in full, you win!
