@@ -10,6 +10,7 @@ from timer import stopwatch
 from hangman_game_class import hangman_game
 
 class TestHangmanFunctions(unittest.TestCase):
+
     def setUp(self):
         # Setting up a testing sample for the test cases
         self.word_list = ['WORD', 'DOG', 'CAT']
@@ -54,6 +55,7 @@ class TestHangmanFunctions(unittest.TestCase):
         self.assertIn('D', updated_list, "Letter 'D' should be added to the guessed list.")
 
 class TestStopwatch(unittest.TestCase):
+
     def setUp(self):
         # Setting up the stopwatch instance for the test cases
         self.timer = stopwatch()
@@ -81,6 +83,7 @@ class TestStopwatch(unittest.TestCase):
         self.assertIn(':', elapsed_time, "The time should be displayed with ':'.")
 
 class TestHangmanGameClass(unittest.TestCase):
+    
     def setUp(self):
         # Set up a new hangman game with a word list and 7 guesses
         self.game = hangman_game(['DOG', 'CAT', 'BEACH'], 7)
