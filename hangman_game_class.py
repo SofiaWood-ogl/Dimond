@@ -39,7 +39,7 @@ class hangman_game:
         print()
     
     def display_game_progress(self): # Shows User the progress of the word guessed as well as lives.
-        print(self.word_to_guess)  # Debugging to make sure word matches word_progress
+        # print(self.word_to_guess)  # Debugging to make sure word matches word_progress
         print(f"{self.word_progress}")
         print(f"Letters used: {self.letters_used}")
         print()
