@@ -2,10 +2,12 @@ from hangman_functions import *
 from typing import List
 from timer import *
 from hangman_game_class import *
+from hangman_points import  *
 
 game = hangman_game('word_list.txt', 7) # Takes word.txt files and number of guesses as parameters
 game.display_intro()
 game.start_game()
+score = points() # Kept consistent, per user. Does not reset after each game.
 
 
 n = 1 # Variable used to break out of loop when game ends.
@@ -14,7 +16,9 @@ while n != 0:
         
         while not game.check_game_completion(): # Game runs as long as it is it isn't finished.
             
+            score.show_points() # Show points after each game (they don't reset as of now)
             game.display_game_progress() 
+
     
             user_response = input() # User guesses either letter or word.
             user_response = user_response.upper()
@@ -29,6 +33,7 @@ while n != 0:
                     game.stop_timer()
                     game.display_win_message()
                     game.set_game_completion()
+                    score.add_point()
 
                 else: #Word wrong and removes guess.
                     game.subtract_guess()
@@ -38,15 +43,18 @@ while n != 0:
                     
         
         # GAME PROGRESS (Lives & Word Progress)
-            if game.get_guesses() == 0:
+            if game.get_guesses() == 0: # User loses when all lives are lost
                 game.stop_timer()
                 game.display_lose_message()
                 game.set_game_completion()
-            
-            elif game.guess_letter_check():
+                if score.get_points() > 0:
+                    score.remove_point()
+                    
+            elif game.guess_letter_check(): # User wins when all letters are filled.
                 game.stop_timer
                 game.display_win_message()
                 game.set_game_completion()
+                score.add_point()
             
         # ASK USER TO REPLAY
             if game.check_game_completion(): # Ask user to play again
