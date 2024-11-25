@@ -35,6 +35,17 @@ def user_guess_letter(user_input, word_to_guess): # See if guessed word matches 
         return True
     else:
         return False
+    
+def create_blank_guess_list(word_to_guess): # Creates visual for word progress
+    word_progress = [] 
+    for i in range(len(word_to_guess)):
+        word_progress.append("_")
+    return word_progress
+
+    
+    
+
+
 
     
     
