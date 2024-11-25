@@ -1,23 +1,25 @@
-
-from timer import stopwatch
 from hangman_functions import user_guess_letter
 
-class point:
+class points:
 
- def __init__(self):
-    self.point=1
-    self.starting_score=0
-    self.score=self.starting_score
-# just makes the defines the varibles of the class.
-def add_point(self):
-    if user_guess_letter:
-        self.score=self.score+self.point
-# is supposed to add point to the score.
-def no_point(self):
-    if not user_guess_letter:
+# ATTRIBUTES
+    def __init__(self):
+        self.score = 0
+
+# ALTER DATA
+    def add_point(self): # When User wins game, adds a point
+        self.score += 1
+    
+    def reset_point(self): # Added for future functionality
+        self.score = 0 #resets the score to 0.
+
+    def remove_point(self): # When User loses game, removes a point
+        self.score -= 1
+
+    # GAME GUI (WHAT USER SEES)
+    def show_points(self): # Shows User how many points they have
+        print(f"Your score is: {self.score}.")
+    
+    # GAME OUTPUTS (RECIEVING A VALUE)
+    def get_points(self): # Used for comparison values.
         return self.score
-# is supposed to make the score stay the same if youre wrong.you nethier get a point or lose a point.
-def reset_point(self):
-    if not stopwatch:
-        self.score=0
-#resets the score to 0.   
