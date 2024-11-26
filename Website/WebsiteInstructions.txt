@@ -1,0 +1,9 @@
+If you want to acess the website you need to get visual Studio code also call vscode. 
+Zip the files into to the vscode. The enviroment is called .venv
+Save all the files.
+click veiw then comand palett.. then python: create terminal.
+Make sure you have installed python must have essentials, python environment mananger, python debugger, python, pylance, HTML CSS support and flask-snippets.
+In the termenal first put pip install flask
+Then everytime you want to access the link to the website you put python -m flask run into the terminal.
+Once the link is up and you get hello flask on the webpage you put /hello/sofia     but replace sofia with your name. 
+Now you have a personalized hangman screen.
