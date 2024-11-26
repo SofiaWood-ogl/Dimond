@@ -17,6 +17,7 @@ class hangman_game:
         self.word_progress = create_blank_guess_list(self.word_to_guess) # Gives user visual on progress of word.
         self.game_finished = False
         self.player = Player(player_name) # Created player object to store name, score, time
+        self.leaderboard = Leaderboard() #Add leaderboard instance
 
 # GAME GUI (WHAT USER SEES)
     def display_intro(self): # Shows at the start of the program.
@@ -75,16 +76,30 @@ class hangman_game:
         
     def set_game_unfinished(self):
         self.game_finished = False  
-
-    def stop_game(self):
-        self.game_timer.stop() # Stopping the timer once the game ends
         
     def set_score(self, score):
         self.player.set_score(score)   # Set the score for the player
 
     def set_time(self):
         self.player.set_time(self.game_timer.get_time()) #Set the time for the player when the game ends
+        
+    def stop_game(self):
+        self.game_timer.stop() # Stopping the timer once the game ends
+        self.set_time()
+        self.leaderboard.add_players([self.player]) # Add player to the leaderboard
 
+    def display_leaderboard(self):
+        self.leaderboard.display_leaderboard()  # Display the leaderboard at the end of each game
+
+
+    def reset_game(self, player_name):
+        self.game_timer.reset()
+        self.guesses_left = 7  # Reset the number of guesses for the next game
+        self.letters_used = []
+        self.word_progress = create_blank_guess_list(self.word_to_guess)
+        self.game_finished = False
+        self.player = Player(player_name)  # Reset player info
+    
 # GAME OUTPUTS (True or False, Checks guesses)
     def check_game_completion(self): # Returns true or false value if game is done or not.
         return self.game_finished # True if Game is finished, false if not.
