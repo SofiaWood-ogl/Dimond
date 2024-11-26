@@ -88,7 +88,9 @@ class hangman_game:
         self.stop_timer() # Stopping the timer once the game ends
         self.set_time()
         self.set_score(self.guesses_left)# Set the score for the player
+        
         self.leaderboard.add_players([self.player]) # Add player to the leaderboard
+        
         self.display_leaderboard()
 
     def display_leaderboard(self):
