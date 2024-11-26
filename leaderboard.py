@@ -21,7 +21,7 @@ class Player:
   
   def get_score(self):
     # getting the players score
-    return self.time
+    return self.score
   
   def get_time(self):
     # getting the players time
@@ -31,53 +31,62 @@ class Player:
     # Getting the players name
     return self.name
 
+  def __repr__(self):
+    # Represents the Player object as a string for easy display.
+    return f"{self.name} - Score: {self.score}, Time: {self.time}s"
+
 #Leaderboard class to store and manage the lists of players, scores, and times
 class Leaderboard:
   def __init__(self):
     #Initialize the leaderboard with an empty list of players, scores, and times
     self.players = [] # lists holds the player object 
 
-def add_players(self, players):
-  # Add a player to the leaderboard
-  self.players.append(player)
+  def add_players(self, players):
+    # Add a player to the leaderboard
+    if isinstance(players, list):
+      self.players.extend(players)
+    else:
+      self.players.append(players)
+      
+  def update_score(self, player_name, score):
+    #update player's score in the leaderboard based on name
+    for player in self.players:
+      if player.get_name() == player_name:
+        player.set_score(score)
+        return
+    print(f"Error: Player {player_name} was not found on the leaderboard.") # prints error message if the player is not found
 
-def update_score(self, player_name, score):
-  #update player's score in the leaderboard based on name
-  for player in self.players:
-    if player.get_name() == player_name:
-      player.set_score(score)
-      return
-  print(f"Player {player_name} was not found on the leaderboard.") # prints error message if the player is not found
+  def update_time(self, player_name, time):
+    # updating the players time based to their name
+    for player in self.players:
+      if player.get_name() == player_name:
+        player.set_time(time)
+        return 
+    print(f" Error: Player {player_name} was not found on the leaderboard.") # Prints error message if the player was not found 
 
-def update time(self, player_name, time):
-# updatin the players time based to their name
-  for player in self.player:
-    if player.get_name() == player.name:
-      player.set_time(time)
-      return 
-  print(f" Player {player_name} was not found on the leaderboard.") # Prints error message if the player was not found 
-
-def get_leaderboard(self):
-  # Getting the leaderboard scored based on score in decending order then time in ascending order
-  sorted_players = sorted(self.players, key= lambda x: (-x.get_score(), x.get_time()))
-  leaderboard = [(player.get_name(), player.get_score(), player.get_time()) for player in sorted_players]
-  return leaderboard
-
-def display_leaderboard(self): 
-  # diplaying the leaderboard in a formatted manner
-  print("Leaderboard:")
-  leaderboard = self.get_leaderboard()
-  for rank, (name, score, time) in enumerate (leaderboard, 1):
-    # converting time from seconds to hours to minutes to seconds
-    minutes, seconds = divmod(time, 60)
-    hours, minutes = divmod(minutes, 60)
-    #printing player's rank, name, score, and formatted time 
-    print(f"{rank}. {name} - Score: {score}, Time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}")
+  def _sort_leaderboard(self):
+    # Helper function to return the leaderboard sorted by descending score and ascending time
+    return sorted(self.players, key = lambda p: (-p.get_score(), p.get_time()))
   
   
-  
-  
+  def get_leaderboard(self):
+    # Getting the leaderboard scored based on score in decending order then time in ascending order
+    sorted_players = self._sort_leaderboard()
+    return [(player.get_name(), player.get_score(), player.get_time()) for player in sorted_players]
 
+  
+  def display_leaderboard(self): 
+    # displaying the leaderboard in a formatted manner
+    sorted_players = self._sort_leaderboard()
+    print("Leaderboard:")
+    for rank, player in enumerate(sorted_players, start=1):
+      print(f"Rank {rank}: {player}")
+    print("*" * 50)
+  
+  def get_top_players(self, n=5):
+    #Returns the top 'n' players from the leaderboard.
+    sorted_players = self._sort_leaderboard()
+    return sorted_players[:n]
 
 
 
