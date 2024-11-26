@@ -3,11 +3,12 @@ from timer import *
 import random
 import builtins
 from ctypes.wintypes import WORD
+from leaderboard import Player, Leaderboard
 
 class hangman_game: 
 
 # GAME ATTRIBUTES
-    def __init__(self, word_set, guesses_left):
+    def __init__(self, word_set, guesses_left, player_name):
         self.word_list = create_word_set(word_set) # Specific set of words the game pulls from and creates list.
         self.word_to_guess = choose_random_word(self.word_list) # Chooses word out of list.
         self.guesses_left = guesses_left # Number of lives left.
@@ -15,6 +16,7 @@ class hangman_game:
         self.game_timer = stopwatch() # Timer for the game
         self.word_progress = create_blank_guess_list(self.word_to_guess) # Gives user visual on progress of word.
         self.game_finished = False
+        self.player = Player(player_name) # Created player object to store name, score, time
 
 # GAME GUI (WHAT USER SEES)
     def display_intro(self): # Shows at the start of the program.
@@ -72,7 +74,16 @@ class hangman_game:
         self.game_finished = True
         
     def set_game_unfinished(self):
-        self.game_finished = False    
+        self.game_finished = False  
+
+    def stop_game(self):
+        self.game_timer.stop() # Stopping the timer once the game ends
+        
+    def set_score(self, score):
+        self.player.set_score(score)   # Set the score for the player
+
+    def set_time(self):
+        self.player.set_time(self.game_timer.get_time()) #Set the time for the player when the game ends
 
 # GAME OUTPUTS (True or False, Checks guesses)
     def check_game_completion(self): # Returns true or false value if game is done or not.
