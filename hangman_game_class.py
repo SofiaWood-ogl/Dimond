@@ -77,16 +77,19 @@ class hangman_game:
     def set_game_unfinished(self):
         self.game_finished = False  
         
-    def set_score(self, score):
+    def set_score(self, score):  # Set the score for the player based on remaining guesses
+        score = self.guesses_left * 10 # Each remaining guess gives 10 points 
         self.player.set_score(score)   # Set the score for the player
 
     def set_time(self):
         self.player.set_time(self.game_timer.get_time()) #Set the time for the player when the game ends
         
     def stop_game(self):
-        self.game_timer.stop() # Stopping the timer once the game ends
+        self.stop_timer() # Stopping the timer once the game ends
         self.set_time()
+        self.set_score(self.guesses_left)# Set the score for the player
         self.leaderboard.add_players([self.player]) # Add player to the leaderboard
+        self.display_leaderboard()
 
     def display_leaderboard(self):
         self.leaderboard.display_leaderboard()  # Display the leaderboard at the end of each game
