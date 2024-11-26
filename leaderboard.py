@@ -59,9 +59,20 @@ def update time(self, player_name, time):
 
 def get_leaderboard(self):
   # Getting the leaderboard scored based on score in decending order then time in ascending order
-  sorted_players = sorted(self.players, key= lamda x: (-x,get_score
-    
-  
+  sorted_players = sorted(self.players, key= lambda x: (-x.get_score(), x.get_time()))
+  leaderboard = [(player.get_name(), player.get_score(), player.get_time()) for player in sorted_players]
+  return leaderboard
+
+def display_leaderboard(self): 
+  # diplaying the leaderboard in a formatted manner
+  print("Leaderboard:")
+  leaderboard = self.get_leaderboard()
+  for rank, (name, score, time) in enumerate (leaderboard, 1):
+    # converting time from seconds to hours to minutes to seconds
+    minutes, seconds = divmod(time, 60)
+    hours, minutes = divmod(minutes, 60)
+    #printing player's rank, name, score, and formatted time 
+    print(f"{rank}. {name} - Score: {score}, Time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}")
   
   
   
