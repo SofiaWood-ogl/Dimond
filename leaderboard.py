@@ -87,15 +87,3 @@ class Leaderboard:
     #Returns the top 'n' players from the leaderboard.
     sorted_players = self._sort_leaderboard()
     return sorted_players[:n]
-
-
-
-
-
-
-
-
-
-
-
-
