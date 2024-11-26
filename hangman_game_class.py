@@ -88,9 +88,7 @@ class hangman_game:
         self.stop_timer() # Stopping the timer once the game ends
         self.set_time()
         self.set_score(self.guesses_left)# Set the score for the player
-        
         self.leaderboard.add_players([self.player]) # Add player to the leaderboard
-        
         self.display_leaderboard()
 
     def display_leaderboard(self):
@@ -140,4 +138,11 @@ class hangman_game:
     
     def get_guesses(self): # Returns number of lives left for comparison.
         return self.guesses_left
-        
+    
+    """ FOR ITERATION 4
+    def get_remaining_spaces(self): # Returns number of empty spaces left when guessing letters.
+        i = 0
+        for '_' in self.word_progress:
+            i += 1
+        return i
+    """  
