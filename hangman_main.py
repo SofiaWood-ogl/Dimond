@@ -4,7 +4,7 @@ from timer import *
 from hangman_game_class import *
 from hangman_points import  *
 
-game = hangman_game('word_list.txt', 7) # Takes word.txt files and number of guesses as parameters
+game = hangman_game('word_list.txt', 7, 'Player') # Takes word.txt files and number of guesses as parameters
 game.display_intro()
 game.start_game()
 score = points() # Kept consistent, per user. Does not reset after each game.
@@ -47,8 +47,7 @@ while n != 0:
                 game.stop_timer()
                 game.display_lose_message()
                 game.set_game_completion()
-                if score.get_points() > 0:
-                    score.remove_point()
+                score.remove_point()
                     
             elif game.guess_letter_check(): # User wins when all letters are filled.
                 game.stop_timer
@@ -62,7 +61,7 @@ while n != 0:
                user_response = input()
                user_response = user_response.upper()
                if user_response != "NO": # User replays game and new object made.
-                   game = hangman_game('word_list.txt', 7)
+                   game = hangman_game('word_list.txt', 7, 'Player')
                    game.start_game()
                else:
                    print("Quitting Game!")
