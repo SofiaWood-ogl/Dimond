@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TEST!!!!!!   Welcome to HangmanOnline!</title>
+        <script> function 
+            fetchPythonOutput() {
+                fetch('/app.py')
+                .then(response => response.json())  
+                .then(data => {
+                   
+                    document.getElementById('output').innerText = data.result;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        </script>
+    </head>
+    <body bgcolor="blue">
+        {% if name %}
+            <strong>TEST   !!!!!  Hello there, {{ name }}!</strong>
+        {% else %}
+        {% endif %}
+        
+        <p> Welcome to Hangman Online!</p>
+        <p> When you click the button it will start your game of hangman.</p>
+        <p> Team Dimond would like to thank you for testing our game!</p>
+        <p> Now click the button and have fun playing HangmanOnline! Good Luck!</p>
+
+        
+        <img src="hangman_online logo.png" alt="Image of Hangman"> 
+
+        <button onclick="fetchPythonOutput()">
+            begin <app class="py">
+        </app></button>
+
+        <h1>Click the button to call the Python function</h1> 
+        <button onclick="callPythonFunction()">Call Function</button> 
+     
+        <script> 
+            function callPythonFunction() { 
+                fetch('/call-function') 
+                    .then(response => response.text()) 
+                    .then(data => alert(data)); 
+            } 
+        </script> 
+
+
+        <div 
+            id="output">
+        </div>
+    </body>
+</html>
